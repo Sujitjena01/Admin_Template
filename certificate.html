@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Certificate Jayhanuman</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/images/tata-fav-icon.png"  type="image/icon type">
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/certificate.css">
+  <link href="assets/css/fontawesome.css" rel="stylesheet">
+  <script src="assets/js/bootstrap.min.js"></script>
+  <style>  
+    table{  
+        position: fixed;
+        z-index: 1;
+        bottom: 0px;
+        left: 0px;
+        background: white;
+    }  
+    table td{
+        padding: 5px;
+      }
+    .b{  
+        background-color: #084298;
+        font-size: 20px;
+        padding: 7px;
+        border-radius: 8px;
+        width: 40px;
+        height: 40px;
+        color: #fff;  
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+    }  
+    .b:hover{  
+        background-color: #62bb11;  
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0   rgba(0,0,0,0.19);  
+    }     
+    #draggable-element {
+        width: 100px;
+        height: 10px;
+        background-color: #fff;
+        color: black;
+        padding: 10px 12px;
+        cursor: move;
+        position: absolute;
+        /* important (all position that's not `static`) */
+    }     
+</style>  
+</head>
+<body>
+<section class="main-body">
+    <!-- <div class="certificate">
+        <div class="left">
+
+        </div>
+        <div class="right">
+            <div class="certificate-image">
+                <img src="assets/images/certificate.png" alt="">
+            </div>
+            <div class="text">
+                <span id="text">Hello World</span>
+            </div>
+        </div>
+    </div> -->
+    <div style="width: 90vh; height: 90vh; overflow: scroll;">
+        <div id="draggable-element">Drag me!</div>
+        <img src="assets/images/certificate.png"/>
+    </div>
+   <div style="position: absolute; left: 0px; bottom: 0px">
+    <input id = "colorInput" type = "color" >
+    <select id="input-font"  onchange="changeFontStyle (this);">
+        <option value="Times New Roman" selected="selected">Times New Roman</option>
+        <option value="Arial">Arial</option>
+        <option value="fantasy">Fantasy</option>
+        <option value="cursive">cursive</option>
+    </select>
+    <select id="input-font-size"  onchange="changeFontSize (this);">
+        <option value="15px" selected="selected">15px</option>
+        <option value="20px">20px</option>
+        <option value="40px">40px</option>
+        <option value="50px">50px</option>
+        <option value="60px">60px</option>
+    </select>
+   </div>
+        <!-- <table>  
+            <tr>  
+                <td></td>  
+                <td><button class = "b" onclick = fun("up")>&#8593</button></td>  
+                <td></td>  
+            </tr>  
+            <tr>  
+                <td><button class = "b" onclick = fun("left") >&#8592</button></td>  
+                <td></td>  
+                <td><button class = "b" onclick = fun("right") >&#8594</button></td>  
+            </tr>  
+            <tr>   
+                <td></td>  
+                <td><button class = "b" onclick = fun("down") >&#8595</button></td>  
+                <td></td>  
+            </tr>  
+        </table>  
+         -->
+       
+</section>
+
+</body>
+
+<script src="https://use.fontawesome.com/0c456c5120.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+ <!-- <script>
+    document.addEventListener('click', function(e){
+        el.style.setProperty('top', e.clientY + 'px' );
+        el.style.setProperty('left', e.clientX + 'px');
+    });
+ </script> -->
+ <!-- <script>
+    text.onmousedown = function(event) { //  start the process
+      // get ready to move: make an absolute and top z-index
+      text.style.position = 'absolute';
+      text.style.zIndex = 1000;
+      // move it from any existing parents directly to the body
+      // to position it relative to the body
+      document.body.append(text);
+      // and put this absolutely positioned text under the pointer
+      moveAt(event.pageX, event.pageY);
+      // centers the text on the coordinates (pageX, pageY)
+      function moveAt(pageX, pageY) {
+        text.style.left = pageX - text.offsetWidth / 2 + 'px';
+        text.style.top = pageY - text.offsetHeight / 2 + 'px';
+      }
+      function onMouseMove(event) {
+        moveAt(event.pageX, event.pageY);
+      }
+      //  move the text on mousemove
+      document.addEventListener('mousemove', onMouseMove);
+      // drop the text, remove unneeded handlers
+      document.onmouseup = function() {
+        document.removeEventListener('mousemove', onMouseMove);
+        text.onmouseup = null;
+      };
+    };
+  </script> -->
+<script>
+    var selected = null, // Object of the element to be moved
+        x_pos = 0,
+        y_pos = 0, // Stores x & y coordinates of the mouse pointer
+        x_elem = 0,
+        y_elem = 0; // Stores top, left values (edge) of the element
+
+        // Will be called when user starts dragging an element
+        function _drag_init(elem) {
+        // Store the object of the element which needs to be moved
+        selected = elem;
+        x_elem = x_pos - selected.offsetLeft;
+        y_elem = y_pos - selected.offsetTop;
+        }
+
+        // Will be called when user dragging an element
+        function _move_elem(e) {
+        x_pos = document.all ? window.event.clientX : e.pageX;
+        y_pos = document.all ? window.event.clientY : e.pageY;
+        if (selected !== null) {
+            selected.style.left = (x_pos - x_elem) + 'px';
+            selected.style.top = (y_pos - y_elem) + 'px';
+        }
+        }
+
+        // Destroy the object when we are done
+        function _destroy() {
+        selected = null;
+        }
+
+        // Bind the functions...
+        document.getElementById('draggable-element').onmousedown = function() {
+        _drag_init(this);
+        return false;
+        };
+
+        document.onmousemove = _move_elem;
+        document.onmouseup = _destroy;
+</script>
+  <script>
+    let colorInput = document.getElementById('colorInput');
+    // Whenever the user changes the color, the input event will be called.
+    var a=document.getElementById("text");
+    colorInput.addEventListener('input', () =>{
+       a.style.color = colorInput.value;
+    });
+ </script>
+ <script>
+    var changeFontStyle = function (font) {
+        document.getElementById("text").style.fontFamily = font.value;
+    }
+    var changeFontSize = function (fontsize) {
+        document.getElementById("text").style.fontSize = fontsize.value;
+    }
+</script>
+  <!-- <script type="text/javascript">  
+    var a=document.getElementById("text");  
+    a.style.position="absolute";  
+    a.style.left="0px";  
+    a.style.top="0px";  
+    a.style.right="0px";  
+    a.style.down="0px"; 
+    function fun(b)  
+    {  
+        if(b==="left")  
+        {   
+            a.style.left=(parseInt(a.style.left)-10)+"px";  
+        }  
+        if(b==="right")  
+        {  
+            a.style.left=(parseInt(a.style.left)+10)+"px";  
+        }  
+        if(b==="up")  
+        {  
+            a.style.top=(parseInt(a.style.top)-10)+"px";  
+        }  
+        if(b==="down")  
+        {  
+            a.style.top=(parseInt(a.style.top)+10)+"px";  
+        }      
+    }  
+    
+</script> -->
+</html>

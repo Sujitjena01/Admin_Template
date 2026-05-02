@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Test Jayhanuman</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/images/tata-fav-icon.png"  type="image/icon type">
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/style-dark.css" rel="stylesheet">
+  <link href="assets/css/fontawesome.css" rel="stylesheet">
+  <link href="assets/css/filter-table/bootstrap-table.min.css" rel="stylesheet">
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+  <script
+  src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+  crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/pages/header.js"></script>
+  <script src="assets/js/pages/sidebar.js"></script>
+
+  <script type="text/javascript" src="assets/pdfmake/pdfmake.min.js"></script>
+  <script type="text/javascript" src="assets/pdfmake/vfs_fonts.js"></script>
+  <script type="text/javascript" src="assets/FileSaver/FileSaver.min.js"></script>
+  <script type="text/javascript" src="assets/jsPDF/jspdf.umd.min.js"></script>
+  <script type="text/javascript" src="assets/html2canvas/html2canvas.min.js"></script>
+  <script type="text/javascript" src="assets/tableExport.js"></script>
+  
+  <script type="text/javaScript">
+
+    function doExport(selector, params) {
+      const options = {
+        //ignoreRow: [1,11,12,-2],
+        //ignoreColumn: [0,-1],
+        pdfmake: {enabled: true},
+        //onBeforeSaveToFile: DoOnBeforeSaveToFile,
+        //onAfterSaveToFile: DoOnAfterSaveToFile,
+
+        tableName: 'Table name'
+      };
+
+      jQuery.extend(true, options, params);
+
+      $(selector).tableExport(options);
+    }
+
+    function DoOnBeforeSaveToFile (data, fileName, type, charset, encoding) {
+      alert ( "onBeforeSaveToFile: " + fileName );
+    }
+
+    function DoOnAfterSaveToFile (data, fileName, type, charset, encoding) {
+      alert ( "onAfterSaveToFile: " + fileName );
+    }
+
+    /**
+     * @return {string}
+     */
+    function DoOnCellHtmlData(cell, row, col, data) {
+      let result = "";
+      if (data !== "") {
+        const html = $.parseHTML(data);
+
+        $.each( html, function() {
+          if ( typeof $(this).html() === 'undefined' )
+            result += $(this).text();
+          else if ( $(this).is("input") )
+            result += $('#'+$(this).attr('id')).val();
+          else if ( $(this).is("select") )
+            result += $('#'+$(this).attr('id')+" option:selected").text();
+          else if ( $(this).hasClass('no_export') !== true )
+            result += $(this).html();
+        });
+      }
+      return result;
+    }
+
+    /**
+     * @return {string}
+     */
+    function DoOnCsvCellData(cell, row, col, data) {
+      let result = data;
+      if (result !== "" && row > 0 && col === 0) {
+        result = "\x1F" + data;
+      }
+      else if (result !== "" && row > 0 && col === 2) {
+        //result = "\x1F" + data;
+      }
+      return result;
+    }
+
+    function DoOnXmlCellData(cell, row, col, data) {
+      if (data == null || data.length === 0) {
+        return data;
+      }
+      return data
+              .replace(/&/g, "&amp;")
+              .replace(/</g, "&lt;")
+              .replace(/>/g, "&gt;")
+              .replace(/"/g, "&quot;")
+              .replace(/'/g, "&#039;");
+    }
+
+    /**
+     * @return {number}
+     */
+    function DoOnXlsxCellData(cell, row, col, data) {
+      let result = data;
+      if (result !== "" && (row < 1 || col !== 0)) {
+        if ( result === +result )
+          result = +result;
+      }
+      return result;
+    }
+
+    /**
+     * @return {string}
+     */
+    function DoOnMsoNumberFormat(cell, row, col) {
+      let result = "";
+      if (row > 0 && col === 0)
+        result = "\\@";
+      else if (row > 0 && col === 2)
+        result = "0"; // #issue 327: Preserve long numbers
+      return result;
+    }
+
+  </script>
+</head>
+<body>    
+  
+<section class="main-body">
+  <main-header></main-header>
+  <div class="middle-body">
+
+    <main-sidebar></main-sidebar>
+    <section class="box-div">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="welcome">
+              <div class="left">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <p>Hello! Sujit Kumar Jena</p>
+              </div>
+              <div class="right">
+                <p><strong>BAICMS / </strong><span>Filter Table</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+        <div class="row ">
+          <div class="col-md-12">
+            <div class="title mt-3">
+                <h5><strong>Filter Table</strong> 
+                    <a href="#" onClick="$('#table').tableExport({type:'pdf',pdfmake:{enabled:true,docDefinition:{pageOrientation:'landscape'}}});">
+                    PDF export</a>
+                    <a href="#" onClick="$('#table').tableExport({type:'excel',
+                        mso: {fileFormat:'xmlss',
+                      worksheetName: ['Table 1']}});">Excel</a>
+                    <a href="#" onClick="$('#table').tableExport({type:'csv'});">CSV</a>
+                    <a href="#" onClick="$('#table').tableExport({type:'png'});">PNG</a>
+                  
+                    
+                </h5>
+            </div>
+            <div class="new-filter-table mt-3"> 
+                <div class="table-responsive">
+                    <table
+                    id="table"
+                    data-show-columns="true"
+                    data-pagination="true"
+                    data-search="true"
+                    data-show-jump-to="true"
+                    class="table table-striped"
+                    data-show-export="true"
+                    data-click-to-select="true"
+                    data-toolbar="#toolbar"
+                    data-show-toggle="true">
+                    <thead>
+                        <tr>
+                            <th data-field="id" data-sortable="true">Sl</th>
+                            <th data-field="name" data-sortable="true">BA Employee</th>
+                            <th data-field="Department" data-sortable="true">Department</th>
+                            <th data-field="Location" data-sortable="true">Location</th>
+                            <th data-field="Date of Apply" data-sortable="true">Date of Apply</th>
+                            <th data-field="Type" data-sortable="true">Type</th>
+                            <th data-field="Action" data-sortable="true" width="120">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Lorenza Skehens</td>
+                            <td>Dazzlesphere</td>
+                            <td>09 Truax Plaza</td>
+                            <td>10/12/21</td>
+                            <td>application/msword</td>
+                            <td>
+                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-ban" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Etti Rodger</td>
+                            <td>Yabox</td>
+                            <td>769 Dawn Center</td>
+                            <td>11/16/21</td>
+                            <td>image/pjpeg</td>
+                            <td>
+                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-ban" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Sven Kingwell</td>
+                            <td>Eadel</td>
+                            <td>979 Dovetail Parkway</td>
+                            <td>3/23/22</td>
+                            <td>application/vnd.ms-excel</td>
+                            <td>
+                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-ban" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Hamlen Smallshaw</td>
+                            <td>Brainsphere</td>
+                            <td>0872 Portage Point</td>
+                            <td>7/31/22</td>
+                            <td>text/plain</td>
+                            <td>
+                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-ban" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Wylie Lindro</td>
+                            <td>Avamm</td>
+                            <td>9 Towne Park</td>
+                            <td>11/8/21</td>
+                            <td>text/plain</td>
+                            <td>
+                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-ban" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Hallsy DeSousa</td>
+                            <td>Gabtune</td>
+                            <td>22 Lake View Plaza</td>
+                            <td>10/18/21</td>
+                            <td>image/pjpeg</td>
+                            <td>
+                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-ban" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Sibilla Gledhall</td>
+                            <td>Oba</td>
+                            <td>6266 Pierstorff Street</td>
+                            <td>12/26/21</td>
+                            <td>audio/mpeg3</td>
+                            <td>
+                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-ban" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Rorke Adamoli</td>
+                            <td>Browsedrive</td>
+                            <td>658 Lotheville Point</td>
+                            <td>3/5/22</td>
+                            <td>video/quicktime</td>
+                            <td>
+                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-ban" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Golda Harkness</td>
+                            <td>Wordware</td>
+                            <td>6112 Fremont Park</td>
+                            <td>7/1/22</td>
+                            <td>image/tiff</td>
+                            <td>
+                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-ban" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Kipp Kantor</td>
+                            <td>Thoughtsphere</td>
+                            <td>7 Main Trail</td>
+                            <td>12/25/21</td>
+                            <td>application/x-msexcel</td>
+                            <td>
+                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-ban" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>Kimberley Glassard</td>
+                            <td>Livetube</td>
+                            <td>1 Southridge Drive</td>
+                            <td>11/17/21</td>
+                            <td>video/avi</td>
+                            <td>
+                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-ban" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>Lotta Goolding</td>
+                            <td>Zoombeat</td>
+                            <td>78203 Hintze Center</td>
+                            <td>6/24/22</td>
+                            <td>video/quicktime</td>
+                            <td>
+                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-ban" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>Cart Crace</td>
+                            <td>Meevee</td>
+                            <td>8 Marquette Lane</td>
+                            <td>7/15/22</td>
+                            <td>audio/mpeg3</td>
+                            <td>
+                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-ban" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>Rodolfo Enticott</td>
+                            <td>Skipfire</td>
+                            <td>4446 Beilfuss Park</td>
+                            <td>4/5/22</td>
+                            <td>application/powerpoint</td>
+                            <td>
+                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-ban" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>Rutter Jopling</td>
+                            <td>Thoughtstorm</td>
+                            <td>3230 Colorado Alley</td>
+                            <td>8/9/22</td>
+                            <td>application/x-mspowerpoint</td>
+                            <td>
+                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-ban" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>Gleda Resdale</td>
+                            <td>Abatz</td>
+                            <td>4883 Lakewood Gardens Way</td>
+                            <td>8/3/22</td>
+                            <td>application/powerpoint</td>
+                            <td>
+                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-ban" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>Humphrey Amyes</td>
+                            <td>Photobug</td>
+                            <td>16383 Scoville Crossing</td>
+                            <td>2/16/22</td>
+                            <td>video/avi</td>
+                            <td>
+                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-ban" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                    </table>
+                    <!-- <input type="button" id="btnExport" value="Export" />
+                    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+                    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+                    <script type="text/javascript">
+                        $("body").on("click", "#btnExport", function () {
+                            html2canvas($('#table')[0], {
+                                onrendered: function (canvas) {
+                                    var data = canvas.toDataURL();
+                                    var docDefinition = {
+                                        content: [{
+                                            image: data,
+                                            width: 500
+                                        }]
+                                    };
+                                    pdfMake.createPdf(docDefinition).download("customer-details.pdf");
+                                }
+                            });
+                        });
+                    </script> -->
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <p>&copy; 2022 - Developed by Odisha Discom IT Team || All Rights Reserved.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </section>
+  </div>
+  
+</section>
+</body>
+<script src="https://use.fontawesome.com/0c456c5120.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+ <script src="assets/js/main.js"></script>
+<script src="assets/js/filter-table/bootstrap-table.min.js"></script>
+<script src="assets/js/filter-table/bootstrap-table-page-jump-to.min.js"></script>
+<script src="assets/js/filter-table/tableExport.min.js"></script>
+<script src="assets/js/filter-table/bootstrap-table-export.min.js"></script>
+<script>
+  $(function() {
+    $('#table').bootstrapTable()
+  })
+</script>
+
+</html>

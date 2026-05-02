@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>TP Odisha Discom :: Admin Template</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/images/color-map.png"  type="image/icon type">
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/style-dark.css" rel="stylesheet">
+  <link href="assets/css/award.css" rel="stylesheet">
+  <link href="assets/css/only-css.css" rel="stylesheet">
+  <link href="assets/css/light-gallery.css" rel="stylesheet">
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/pages/header.js"></script>
+  <script src="assets/js/pages/sidebar.js"></script>
+  <script src="assets/js/pages/footer.js"></script>
+  <script src="assets/js/FontAwesome.js"></script>
+  <style>
+    @media (max-width:767px) {
+        .error-div img{
+            width: 100%;
+        }
+    }
+    .error-div{
+        margin-bottom: 100px;
+        text-align: center;
+    }
+  </style>
+</head>
+<body>
+<section class="main-body">
+  <main-header></main-header>
+  <div class="middle-body">
+    <main-sidebar></main-sidebar>
+    
+    <section class="box-div">
+      <div class="container-fluid">
+        <div class="row mt-4"> 
+          <div class="col-md-12">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Oops!</strong> Sorry, there is something problem. Our developers are solving this. You can return to our home page.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div class="error-div">
+                <img src="assets/images/error.png" alt="Error">
+                <h1 class="mb-3"><strong>Oops! This page doesn't exist.</strong></h1>
+                <p>Sorry, there is something problem. Our developers are solving this. You can return to our home page.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <main-footer></main-footer>
+    </section>
+
+  </div>
+  
+  
+</section>
+</body>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/light-gallery.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#lightgallery').lightGallery({
+      pager: true
+    });
+  });
+  </script>
+
+</html>

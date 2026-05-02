@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>TP Odisha Discom :: Admin Template</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/images/color-map.png" type="image/icon type">
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/only-css.css" rel="stylesheet">
+  <link href="assets/css/font-awesome/css/all.css" rel="stylesheet">
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/pages/header.js"></script>
+  <script src="assets/js/pages/sidebar.js"></script>
+  <script src="assets/js/pages/footer.js"></script>
+
+</head>
+
+<body>
+  <style>
+    .dropdown-submenu {
+      position: relative;
+    }
+
+    .dropdown-submenu .dropdown-menu {
+      top: 0;
+      left: 100%;
+      margin-top: -1px;
+    }
+  </style>
+  <section class="main-body">
+    <main-header></main-header>
+    <div class="middle-body">
+      <!-- <main-sidebar></main-sidebar> -->
+      <section class="sidebar" id="sidebar">
+        <div class="nav">
+          <ul>
+
+
+            <li class="btnToggle" data-div="2" data-chevron="ch2"><a href="#"><i class="fa-regular fa-file"></i> Reports
+                <span><i class="fa fa-chevron-right" aria-hidden="true" id="ch2"></i></span></a>
+              <ul id="2" class="toggleDiv">
+                <li><a href="#">Basic Reports</a></li>
+                <li><a href="#">Peer Reports</a></li>
+                <li><a href="#">Hierarchy Reports</a></li>
+                <li><a href="#">Draft Entry Reports</a></li>
+                <li><a href="#">Question Wise MIS Point Summary MIS</a></li>
+              </ul>
+            </li>
+            <li class="btnToggle" data-div="3" data-chevron="ch3"><a href="#"><i class="fa-solid fa-people-group"></i>
+                RR Committee <span><i class="fa fa-chevron-right" aria-hidden="true" id="ch3"></i></span></a>
+              <ul id="3" class="toggleDiv">
+                <li><a href="#">Create RR committee</a></li>
+                <li><a href="#">RR committee remarks</a></li>
+              </ul>
+            </li>
+            <li class="btnToggle" data-div="4" data-chevron="ch4"><a href="#"><i class="fa-solid fa-list-check"></i> QC
+                Approval Bin <span><i class="fa fa-chevron-right" aria-hidden="true" id="ch4"></i></span></a>
+              <ul id="4" class="toggleDiv">
+                <li><a href="#">Pending Approvals</a></li>
+              </ul>
+            </li>
+            <li class="btnToggle" data-div="5" data-chevron="ch5"><a href="#"><i class="fa-solid fa-user-tie"></i>
+                Master <span><i class="fa fa-chevron-right" aria-hidden="true" id="ch5"></i></span></a>
+              <ul id="5" class="toggleDiv">
+                <li><a href="#">Award Master</a></li>
+                <li><a href="#">Role Master</a></li>
+                <li><a href="#">Set Quota for Employees</a></li>
+                <li><a href="#">Approve/Decline Bulk Nominations</a></li>
+                <li><a href="#">Wall of Fame Master</a></li>
+                <li><a href="#">Point Request Approval</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+      </section>
+
+      <section class="box-div">
+        <div class="container-fluid">
+          <div class="row ">
+            <div class="col-md-12">
+              <div class="row my-3">
+                <div class="col-md-3 mt-3">
+                  <a href="#">
+                    <div class="dashboard-box dashboard-box-raised">
+                      <div class="left">
+                        <h1>Raised</h1>
+                        <p>01</p>
+                      </div>
+                      <div class="right">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-md-3 mt-3">
+                  <a href="#">
+                    <div class="dashboard-box dashboard-box-solved">
+                      <div class="left">
+                        <h1>Solved</h1>
+                        <p>10</p>
+                      </div>
+                      <div class="right">
+                        <i class="fa-solid fa-circle-check"></i>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-md-3 mt-3">
+                  <a href="#">
+                    <div class="dashboard-box dashboard-box-pending">
+                      <div class="left">
+                        <h1>Pending</h1>
+                        <p>07</p>
+                      </div>
+                      <div class="right">
+                        <i class="fa-solid fa-clock"></i>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-md-3 mt-3">
+                  <a href="#">
+                    <div class="dashboard-box dashboard-box-escalated">
+                      <div class="left">
+                        <h1>Escalated</h1>
+                        <p>07</p>
+                      </div>
+                      <div class="right">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+      <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <p>&copy; 2025 - Powered by TP Odisha IT Shared Service || All Rights Reserved.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- <main-footer></main-footer> -->
+    </div>
+
+
+  </section>
+</body>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/light-gallery.js"></script>
+<script>
+  $(document).ready(function () {
+    $('#lightgallery').lightGallery({
+      pager: true
+    });
+  });
+</script>
+
+</html>

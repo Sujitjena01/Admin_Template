@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>TP Odisha Discom :: Admin Template</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/images/color-map.png"  type="image/icon type">
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/style-dark.css" rel="stylesheet">
+  <link href="assets/css/award.css" rel="stylesheet">
+  <link href="assets/css/light-gallery.css" rel="stylesheet">
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/pages/header.js"></script>
+  <script src="assets/js/pages/sidebar.js"></script>
+  <script src="assets/js/pages/footer.js"></script>
+  <script src="assets/js/FontAwesome.js"></script>
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+  <style>
+.dropdownsearch{
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+}
+.options{
+  margin:1rem;
+  max-width:350px;
+  width:50%;  
+  height:250px;
+}
+@media(max-width:34em){
+  .main{
+    min-width:150px;
+    width:auto;
+  }
+}
+select {
+    display: none !important;
+}
+
+.dropdown-select {
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#40FFFFFF', endColorstr='#00FFFFFF', GradientType=0);
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    float: left;
+    position: relative;
+    text-align: left !important;
+    transition: all 0.2s ease-in-out;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+    width: auto;
+    border: 1px solid #98abc7;
+}
+
+.dropdown-select:focus {
+    background-color: #fff;
+}
+
+.dropdown-select:hover {
+    background-color: #fff;
+}
+
+.dropdown-select:active,
+.dropdown-select.open {
+    background-color: #fff !important;
+    border-color: #bbb;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05) inset;
+}
+
+.dropdown-select:after {
+    height: 0;
+    width: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #777;
+    -webkit-transform: origin(50% 20%);
+    transform: origin(50% 20%);
+    transition: all 0.125s ease-in-out;
+    content: '';
+    display: block;
+    margin-top: -2px;
+    pointer-events: none;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+}
+
+.dropdown-select.open:after {
+    -webkit-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+}
+
+.dropdown-select.open .list {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.dropdown-select.open .option {
+    cursor: pointer;
+}
+
+.dropdown-select.wide {
+    width: 100%;
+}
+
+.dropdown-select.wide .list {
+    left: 0 !important;
+    right: 0 !important;
+}
+
+.dropdown-select .list {
+    box-sizing: border-box;
+    transition: all 0.15s cubic-bezier(0.25, 0, 0.25, 1.75), opacity 0.1s linear;
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75);
+    -webkit-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.09);
+    background-color: #fff;
+    border-radius: 6px;
+    margin-top: 4px;
+    padding: 3px 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 999;
+    max-height: 250px;
+    overflow: auto;
+    border: 1px solid #ddd;
+}
+
+.dropdown-select .list:hover .option:not(:hover) {
+    background-color: transparent !important;
+}
+.dropdown-select .dd-search{
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0.5rem;
+}
+
+.dropdown-select .dd-searchbox{
+  width:95%;
+  border:1px solid #999;
+  border-color:#999;
+  border-radius:4px;
+  outline:none;
+  padding: 10px;
+}
+.dropdown-select .dd-searchbox:focus{
+  border-color:#195599;
+}
+
+.dropdown-select .list ul {
+    padding: 0;
+}
+
+.dropdown-select .option {
+    cursor: default;
+    font-weight: 400;
+    line-height: 40px;
+    outline: none;
+    padding-left: 18px;
+    padding-right: 29px;
+    text-align: left;
+    transition: all 0.2s;
+    list-style: none;
+}
+
+.dropdown-select .option:hover,
+.dropdown-select .option:focus {
+    background-color: #f6f6f6 !important;
+}
+
+.dropdown-select .option.selected {
+    font-weight: 600;
+    color: #195599;
+}
+
+.dropdown-select .option.selected:focus {
+    background: #f6f6f6;
+}
+
+.dropdown-select a {
+    color: #aaa;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.dropdown-select a:hover {
+    color: #666;
+}
+  </style>
+</head>
+<body>
+<section class="main-body">
+  <main-header></main-header>
+  <div class="middle-body">
+    <main-sidebar></main-sidebar>
+   
+    <section class="box-div">
+      <div class="container-fluid">
+        
+        <div class="row ">
+          <div class="col-md-12">
+            <div class="title mt-3">
+                <h5><strong>Forms Select</strong></h5>
+            </div>
+            <div class="buttons mt-3">
+              <div class="mt-3">
+                <form class="row g-3">
+                    
+                    <div class="col-md-4">
+                      <label for="dynamic_select" class="form-label">State</label>
+                      <select id="dynamic_select" class="form-select form-control">
+                        <option value="" selected>Choose...</option>
+                        <option value="">Affiliates</option>
+                        <option value="">Exchange</option>
+                        <option value="">Donate</option>
+                        <option value="">Downloads</option>
+                        <option value="">Merch</option>
+                        <option value="">Roundups</option>
+                        <option value="">Affiliates</option>
+                        <option value="">Exchange</option>
+                        <option value="">Donate</option>
+                        <option value="">Downloads</option>
+                        <option value="">Merch</option>
+                        <option value="">Roundups</option>
+                      </select>
+                    </div>
+					<div class="col-md-4">
+                      <label for="dynamic_select" class="form-label">State</label>
+                      <select id="dynamic_select" class="form-select form-control">
+                        <option value="" selected>Choose...</option>
+                        <option value="">Affiliates</option>
+                        <option value="">Exchange</option>
+                        <option value="">Donate</option>
+                        <option value="">Downloads</option>
+                        <option value="">Merch</option>
+                        <option value="">Roundups</option>
+                        <option value="">Affiliates</option>
+                        <option value="">Exchange</option>
+                        <option value="">Donate</option>
+                        <option value="">Downloads</option>
+                        <option value="">Merch</option>
+                        <option value="">Roundups</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <strong>Select Language:</strong>
+                      <select id="multiple-checkboxes" multiple="multiple">
+                          <option value="php">PHP</option>
+                          <option value="javascript">JavaScript</option>
+                          <option value="java">Java</option>
+                          <option value="sql">SQL</option>
+                          <option value="jquery">Jquery</option>
+                          <option value=".net">.Net</option>
+                      </select>
+                    </div>
+                  </form>
+                </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+        <style>.select2-container {
+          min-width: 400px;
+        }
+        
+        .select2-results__option {
+          padding-right: 20px;
+          vertical-align: middle;
+        }
+        .select2-results__option:before {
+          content: "";
+          display: inline-block;
+          position: relative;
+          height: 20px;
+          width: 20px;
+          border: 2px solid #e9e9e9;
+          border-radius: 4px;
+          background-color: #fff;
+          margin-right: 20px;
+          vertical-align: middle;
+        }
+        .select2-results__option[aria-selected=true]:before {
+          font-family:fontAwesome;
+          content: "\f00c";
+          color: #fff;
+          background-color: #f77750;
+          border: 0;
+          display: inline-block;
+          padding-left: 3px;
+        }
+        .select2-container--default .select2-results__option[aria-selected=true] {
+          background-color: #fff;
+        }
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+          background-color: #eaeaeb;
+          color: #272727;
+        }
+        .select2-container--default .select2-selection--multiple {
+          margin-bottom: 10px;
+        }
+        .select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple {
+          border-radius: 4px;
+        }
+        .select2-container--default.select2-container--focus .select2-selection--multiple {
+          border-color: #f77750;
+          border-width: 2px;
+        }
+        .select2-container--default .select2-selection--multiple {
+          border-width: 2px;
+        }
+        .select2-container--open .select2-dropdown--below {
+          
+          border-radius: 6px;
+          box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        
+        }
+        .select2-selection .select2-selection--multiple:after {
+          content: 'hhghgh';
+        }
+        /* select with icons badges single*/
+        .select-icon .select2-selection__placeholder .badge {
+          display: none;
+        }
+        .select-icon .placeholder {
+        /* 	display: none; */
+        }
+        .select-icon .select2-results__option:before,
+        .select-icon .select2-results__option[aria-selected=true]:before {
+          display: none !important;
+          /* content: "" !important; */
+        }
+        .select-icon  .select2-search--dropdown {
+          display: none;
+        }
+        </style>
+        <div class="row">
+          <h4>checkbox</h4>
+          <select class="js-select2 form-select" multiple="multiple">
+            <option value="Option1" data-badge="aaa">Option1</option>
+            <option value="Option2" data-badge="">Option2</option>
+            <option value="O3" data-badge="">Option3</option>
+            <option value="O4" data-badge="">Option4</option>
+            <option value="O5" data-badge="">Option5</option>
+            <option value="O6" data-badge="">Option6</option>
+            <option value="O7" data-badge="">Option7</option>
+          </select>
+        </div>
+      </div>
+      <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <p>&copy; 2022 - Developed by Odisha Discom IT Team || All Rights Reserved.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </section>
+  </div>
+  
+</section>
+</body>
+
+<script src="assets/js/jquery.min.js"></script>
+ <script src="assets/js/main.js"></script>
+ <script>
+  function create_custom_dropdowns() {
+$('select').each(function (i, select) {
+    if (!$(this).next().hasClass('dropdown-select')) {
+        $(this).after('<div class="dropdown-select wide ' + ($(this).attr('class') || '') + '" tabindex="0"><span class="current"></span><div class="list"><ul></ul></div></div>');
+        var dropdown = $(this).next();
+        var options = $(select).find('option');
+        var selected = $(this).find('option:selected');
+        dropdown.find('.current').html(selected.data('display-text') || selected.text());
+        options.each(function (j, o) {
+            var display = $(o).data('display-text') || '';
+            dropdown.find('ul').append('<li class="option ' + ($(o).is(':selected') ? 'selected' : '') + '" data-value="' + $(o).val() + '" data-display-text="' + display + '">' + $(o).text() + '</li>');
+        });
+    }
+});
+
+$('.dropdown-select ul').before('<div class="dd-search"><input id="txtSearchValue" autocomplete="off" onkeyup="filter()" class="dd-searchbox" type="text"></div>');
+}
+
+// Event listeners
+
+// Open/close
+$(document).on('click', '.dropdown-select', function (event) {
+if($(event.target).hasClass('dd-searchbox')){
+    return;
+}
+$('.dropdown-select').not($(this)).removeClass('open');
+$(this).toggleClass('open');
+if ($(this).hasClass('open')) {
+    $(this).find('.option').attr('tabindex', 0);
+    $(this).find('.selected').focus();
+} else {
+    $(this).find('.option').removeAttr('tabindex');
+    $(this).focus();
+}
+});
+
+// Close when clicking outside
+$(document).on('click', function (event) {
+if ($(event.target).closest('.dropdown-select').length === 0) {
+    $('.dropdown-select').removeClass('open');
+    $('.dropdown-select .option').removeAttr('tabindex');
+}
+event.stopPropagation();
+});
+
+function filter(){
+var valThis = $('#txtSearchValue').val();
+$('.dropdown-select ul > li').each(function(){
+ var text = $(this).text();
+    (text.toLowerCase().indexOf(valThis.toLowerCase()) > -1) ? $(this).show() : $(this).hide();         
+});
+};
+// Search
+
+// Option click
+$(document).on('click', '.dropdown-select .option', function (event) {
+$(this).closest('.list').find('.selected').removeClass('selected');
+$(this).addClass('selected');
+var text = $(this).data('display-text') || $(this).text();
+$(this).closest('.dropdown-select').find('.current').text(text);
+$(this).closest('.dropdown-select').prev('select').val($(this).data('value')).trigger('change');
+});
+
+// Keyboard events
+$(document).on('keydown', '.dropdown-select', function (event) {
+var focused_option = $($(this).find('.list .option:focus')[0] || $(this).find('.list .option.selected')[0]);
+// Space or Enter
+//if (event.keyCode == 32 || event.keyCode == 13) {
+if (event.keyCode == 13) {
+    if ($(this).hasClass('open')) {
+        focused_option.trigger('click');
+    } else {
+        $(this).trigger('click');
+    }
+    return false;
+    // Down
+} else if (event.keyCode == 40) {
+    if (!$(this).hasClass('open')) {
+        $(this).trigger('click');
+    } else {
+        focused_option.next().focus();
+    }
+    return false;
+    // Up
+} else if (event.keyCode == 38) {
+    if (!$(this).hasClass('open')) {
+        $(this).trigger('click');
+    } else {
+        var focused_option = $($(this).find('.list .option:focus')[0] || $(this).find('.list .option.selected')[0]);
+        focused_option.prev().focus();
+    }
+    return false;
+    // Esc
+} else if (event.keyCode == 27) {
+    if ($(this).hasClass('open')) {
+        $(this).trigger('click');
+    }
+    return false;
+}
+});
+
+$(document).ready(function () {
+create_custom_dropdowns();
+});
+
+
+
+$(function() {
+// bind change event to select
+$('#dynamic_select').on('change', function() {
+var url = $(this).val(); // get selected value
+if (url) { // require a URL
+  window.location = url; // redirect
+}
+return false;
+});
+});
+</script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+<script>
+      $(document).ready(function() {
+        $('#multiple-checkboxes').multiselect({
+          includeSelectAllOption: true,
+        });
+    });
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+<script>
+  $(".js-select2").select2({
+			closeOnSelect : false,
+			placeholder : "Placeholder",
+			// allowHtml: true,
+			allowClear: true,
+			tags: true // создает новые опции на лету
+		});
+</script>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Report :: Template</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/images/tata-fav-icon.png" type="image/icon type">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/buttons.css" rel="stylesheet">
+  <link href="assets/css/font-awesome/css/all.css" rel="stylesheet">
+
+  <!-- Report Page CSS -->
+  <link rel="stylesheet" href="assets/css/report.css">
+  <!-- Report Page CSS -->
+
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/pages/header.js"></script>
+  <script src="assets/js/pages/sidebar.js"></script>
+</head>
+
+<body>
+  <section class="main-body">
+    <main-header></main-header>
+    <div class="middle-body">
+      <main-sidebar></main-sidebar>
+
+      <section class="box-div p-0">
+        <div class="filter-box">
+          <div class="filter-title">
+            <h1>Filter</h1>
+            <!-- Toggle Button -->
+            <button id="filterToggle" class="filter-toggle-btn">
+              <i class="fa-solid fa-chevron-up"></i>
+            </button>
+          </div>
+          <div class="filter-form" id="filterForm">
+            <div class="row ">
+
+
+              <div class="col-md-3">
+                <div class="form-floating">
+                  <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                    <option>Select Discom</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                  <label for="floatingSelect">Discom</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-floating">
+                  <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                    <option>Select Department</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                  <label for="floatingSelect">Department</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-floating">
+                  <input type="date" class="form-control" id="floatingInput" placeholder="name@example.com">
+                  <label for="floatingInput">Start Date</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-floating">
+                  <input type="date" class="form-control" id="floatingInput" placeholder="name@example.com">
+                  <label for="floatingInput">Start Date</label>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-3">
+                <div class="form-floating">
+                  <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                    <option>Select Circle/Corporate</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                  <label for="floatingSelect">Circle/Corporate</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-floating">
+                  <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                    <option>Select Division</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                  <label for="floatingSelect">Division</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-floating">
+                  <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                    <option>Select Sub-division</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                  <label for="floatingSelect">Sub-division</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-floating">
+                  <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                    <option>Select Section</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                  <label for="floatingSelect">Section</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mt-2 text-center">
+              <div class="col-md-12">
+                <button class="btn btn-primary btn-sm">Filter <i class="fa-solid fa-filter"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid mt-4">
+          <div class="row g-4">
+
+            <!-- === Issue Raised === -->
+            <div class="col-md-3">
+              <div class="card issue-card issue-raised">
+                <div class="card-header">
+                  <span>Issue Raised</span>
+                  <span class="value">2645</span>
+                </div>
+                <div class="card-body text-center">
+                  <canvas id="chartRaised"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <!-- === Issue Solved === -->
+            <div class="col-md-3">
+              <div class="card issue-card issue-solved">
+                <div class="card-header">
+                  <span>Issue Solved</span>
+                  <span class="value">1670</span>
+                </div>
+                <div class="card-body text-center">
+                  <canvas id="chartSolved"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <!-- === Issue Pending === -->
+            <div class="col-md-3">
+              <div class="card issue-card issue-pending">
+                <div class="card-header">
+                  <span>Issue Pending</span>
+                  <span class="value">750</span>
+                </div>
+                <div class="card-body text-center">
+                  <canvas id="chartPending"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <!-- === Issue Escalated === -->
+            <div class="col-md-3">
+              <div class="card issue-card issue-escalated">
+                <div class="card-header">
+                  <span>Issue Escalated</span>
+                  <span class="value">225</span>
+                </div>
+                <div class="card-body text-center">
+                  <canvas id="chartEscalated"></canvas>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="container-fluid mt-4">
+          <div class="status-card mb-4">
+            <h5 class="status-title">STATUS</h5>
+
+            <div class="chart-wrapper">
+              <canvas id="statusChart"></canvas>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="container-fluid mt-4">
+          <div class="row">
+            <div class="col-md-12">
+
+              <div class="status-card">
+                <h5 class="status-title">Top 5 Complaints</h5>
+
+                <div class="chart-wrapper">
+                  <canvas id="topComplaintsChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="container-fluid mt-4">
+          <div class="row">
+            <div class="col-md-12">
+
+              <div class="status-card">
+                <h5 class="status-title">Top 5 Employees</h5>
+
+                <div class="chart-wrapper">
+                  <canvas id="employeeComplaintsChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="container-fluid mt-4">
+          <div class="row">
+            <div class="col-md-12">
+
+              <div class="status-card">
+                <h5 class="status-title">Month wise trend of complaints</h5>
+
+                <div class="chart-wrapper">
+                  <canvas id="complaintChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <footer>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <p>&copy; 2022 - Developed by Odisha Discom IT Team || All Rights Reserved.</p>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </section>
+    </div>
+
+  </section>
+</body>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+
+<!-- chart.js and plugins -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script src="assets/js/report.js"></script>
+
+</html>

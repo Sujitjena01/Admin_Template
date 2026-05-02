@@ -1,0 +1,22 @@
+.main-body header {
+  background: #052a52;
+  border-bottom: 0.5px solid #8495af;
+}
+.main-body .middle-body .box-div {
+  background: #041d38;
+}
+.main-body .middle-body .sidebar {
+  background: #052a52;
+  border-right: 0.5px solid #8495af;
+}
+.main-body .middle-body .dashboard-box {
+  box-shadow: 0px 0px 0px 0px #ebebeb;
+  border: 0px solid #999994;
+  background-color: #052a52;
+}
+.main-body .middle-body .dashboard-box .left h1 {
+  color: #cdcfcf;
+}
+.main-body .middle-body .dashboard-box .left p {
+  color: #fff;
+}/*# sourceMappingURL=style_dark.css.map */

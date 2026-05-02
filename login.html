@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>BAMS :: Business Associate Management System</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/images/color-map.png"  type="image/icon type">
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/login.css" rel="stylesheet">
+  <script src="assets/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="assets/fontawesome/css/all.css">
+  <!-- <script src="https://use.fontawesome.com/0c456c5120.js"></script> -->
+  
+</head>
+<body onload="generate()">
+<section class="login">
+    <div class="left">
+        <div class="internal">
+            <img src="assets/images/D&it.png" alt="D&IT">
+            <h1><strong>Welcome</strong> to </h1>
+            <div class="text">
+                <p><strong>BAMS</strong> (Business Associate Management System)</p>
+                <p>BA ID Card & Compliance Portal</p>
+            </div>
+            <h2><span>TP Odisha Discom</span></h2>
+        </div>
+    </div>
+    <div class="right">
+        <div class="konark-wheel1"></div>
+        <div class="konark-wheel2"></div>
+        <div class="internal">
+            <h1><strong>Hello!</strong> Welcome Back.</h1>
+            <p class="mb-3">Please use your official email id and password.</p>
+            <form action="">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label"><i class="fa fa-user" aria-hidden="true"></i> Email ID</label>
+                    <input type="mail" class="form-control" id="exampleFormControlInput1" placeholder="example@companyname.com">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label"><i class="fa fa-key" aria-hidden="true"></i> Password</label>
+                    <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="Enter your password">
+                </div>
+                <div class="captcha">
+                    
+                    <div>
+                        <input type="text"  readonly oncopy="return false" id="generated-captcha">
+                    </div>
+                    <div class="refresh">
+                        <a href="#" onclick="generate()"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="d-flex">
+                        <input type="text" id="entered-captcha" class="form-control" placeholder="Enter the captcha.." onchange="check()" onpaste="return false;">
+                        <h2 id="status" style="position: absolute; right: 5px;"></h2>
+                    </div> 
+                </div>
+                
+                <div class="d-grid">
+                    <!-- <a href="#" class="btn btn-primary btn-block" type="button">SUBMIT</a> -->
+                    <input type="submit" name="btn_login" value="SUBMIT" id="btn_login" class="btn btn-primary btn-block">
+                </div>
+                <div class="help">
+                    <p>Need any help? <a href="#">Click Here</a></p>
+                </div>
+                <div class="message">
+                    <div class="success">
+                        <p>Sorry! The username and password you have entered is incorrect.</p>
+                    </div>
+                </div>
+                <div class="extra_text">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <a href="#">Link</a></p>
+                </div>
+            </form>
+        </div>
+        <h4>Powered by TP Odisha IT Shared Service</h4>
+    </div>
+</section>
+<script>
+    let captcha;
+    let alphabets = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz!@#$%^&*()";
+    //console.log(alphabets.length);
+    let status = document.getElementById('status');
+    status.innerText = "";
+
+    generate = () => {
+    // console.log(status)
+    let first = alphabets[Math.floor(Math.random() * alphabets.length)];
+    let second = Math.floor(Math.random() * 10);
+    let third = Math.floor(Math.random() * 10);
+    let fourth = alphabets[Math.floor(Math.random() * alphabets.length)];
+    let fifth = alphabets[Math.floor(Math.random() * alphabets.length)];
+    let sixth = Math.floor(Math.random() * 10);
+    captcha = first.toString()+second.toString()+third.toString()+fourth.toString()+fifth.toString()+sixth.toString();
+    //console.log(captcha);
+    document.getElementById('generated-captcha').value = captcha;
+    document.getElementById("entered-captcha").value = '';
+    status.innerText = ""
+    }
+
+    check = () => {
+    //console.log(status)
+    let userValue = document.getElementById("entered-captcha").value;
+    console.log(captcha);
+    console.log(userValue);
+    if(userValue == captcha){
+        status.innerHTML = "<i class='fa fa-check' aria-hidden='true'></i>"
+    }else{
+        status.innerHTML = "<i class='fa fa-remove' aria-hidden='true'></i>"
+        document.getElementById("entered-captcha").value = '';
+    }
+    }
+</script>
+</body>
+</html>

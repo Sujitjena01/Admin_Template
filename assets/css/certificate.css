@@ -1,0 +1,24 @@
+.certificate {
+  width: 100vw;
+  height: 100vh;
+  overflow: scroll;
+}
+.certificate .right {
+  background-color: aquamarine;
+  height: 100%;
+  position: relative;
+}
+.certificate .right .certificate-image img {
+  width: 100%;
+}
+.certificate .right .text span {
+  position: absolute;
+  padding: 0 0;
+  transition: top 0.5s, left 0.5s;
+  font-family: Verdana;
+  font-size: 18px;
+  color: #fff;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+}/*# sourceMappingURL=certificate.css.map */

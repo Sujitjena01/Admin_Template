@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown with Search</title>
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            width: 200px;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            width: 100%;
+            border: 1px solid #ccc;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+        .dropdown-content input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: none;
+            outline: none;
+        }
+        .dropdown-content div {
+            padding: 8px;
+            cursor: pointer;
+        }
+        .dropdown-content div:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="dropdown">
+        <button onclick="toggleDropdown()">Select an option</button>
+        <div id="dropdownList" class="dropdown-content">
+            <input type="text" id="searchInput" onkeyup="filterDropdown()" placeholder="Search...">
+            <div onclick="selectOption(this)">Apple</div>
+            <div onclick="selectOption(this)">Banana</div>
+            <div onclick="selectOption(this)">Cherry</div>
+            <div onclick="selectOption(this)">Date</div>
+            <div onclick="selectOption(this)">Grapes</div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            document.getElementById("dropdownList").style.display = "block";
+        }
+        
+        function filterDropdown() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let items = document.querySelectorAll("#dropdownList div");
+            
+            items.forEach(item => {
+                let text = item.textContent || item.innerText;
+                item.style.display = text.toLowerCase().includes(input) ? "block" : "none";
+            });
+        }
+        
+        function selectOption(element) {
+            document.querySelector(".dropdown button").innerText = element.innerText;
+            document.getElementById("dropdownList").style.display = "none";
+        }
+
+        document.addEventListener("click", function(event) {
+            if (!event.target.closest(".dropdown")) {
+                document.getElementById("dropdownList").style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>

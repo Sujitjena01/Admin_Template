@@ -1,0 +1,324 @@
+/*------------------- Responsive --------------------------*/
+.login {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+@media screen and (max-width: 480px) {
+  .login {
+    grid-template-columns: auto;
+    height: auto;
+  }
+}
+.login .left {
+  background-image: url(../images/left-bg.png);
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+.login .left::before {
+  position: absolute;
+  content: "";
+  background-color: rgba(35, 100, 173, 0.9);
+  width: 100%;
+  height: 100%;
+}
+.login .left .internal {
+  position: relative;
+  text-align: center;
+  color: #fff;
+  height: 100%;
+}
+.login .left .internal img {
+  width: 250px;
+}
+@media screen and (max-width: 480px) {
+  .login .left .internal img {
+    width: 110px;
+  }
+}
+.login .left .internal h1 {
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 37px;
+}
+@media screen and (max-width: 480px) {
+  .login .left .internal h1 {
+    display: none;
+  }
+}
+.login .left .internal .text {
+  background: rgba(39, 79, 155, 0.46);
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 20px 40px;
+  margin: auto;
+  margin-top: 20px;
+}
+@media screen and (max-width: 480px) {
+  .login .left .internal .text {
+    margin-top: 0px;
+    padding: 10px;
+  }
+}
+.login .left .internal .text p {
+  font-size: 20px;
+  margin-bottom: 0px;
+  line-height: 40px;
+  font-family: "Inter-Regular", sans-serif;
+}
+@media screen and (max-width: 480px) {
+  .login .left .internal .text p {
+    line-height: 24px;
+    font-size: 15px;
+  }
+}
+.login .left h2 {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
+@media screen and (max-width: 480px) {
+  .login .left h2 {
+    position: relative;
+    bottom: 0px;
+  }
+}
+.login .left h2 span {
+  font-family: "Inter-Regular", sans-serif;
+  font-weight: bold;
+  font-size: 26px;
+  letter-spacing: 1px;
+  position: relative;
+}
+@media screen and (max-width: 480px) {
+  .login .left h2 span {
+    font-size: 17px;
+  }
+}
+.login .left h2 span::before {
+  position: absolute;
+  content: "";
+  width: 100px;
+  height: 3px;
+  background-color: #fff;
+  left: -120px;
+  top: 15px;
+}
+@media screen and (max-width: 480px) {
+  .login .left h2 span::before {
+    top: 10px;
+    width: 20%;
+    left: -50px;
+  }
+}
+.login .left h2 span::after {
+  position: absolute;
+  content: "";
+  width: 100px;
+  height: 3px;
+  background-color: #fff;
+  right: -120px;
+  top: 15px;
+}
+@media screen and (max-width: 480px) {
+  .login .left h2 span::after {
+    top: 10px;
+    width: 20%;
+    right: -50px;
+  }
+}
+.login .right {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .login .right {
+    padding: 30px;
+  }
+}
+.login .right h4 {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+  color: #818283;
+}
+@media screen and (max-width: 480px) {
+  .login .right h4 {
+    position: relative;
+    bottom: 0px;
+  }
+}
+.login .right .internal {
+  position: relative;
+  display: grid;
+  width: 390px;
+  justify-self: center;
+}
+@media screen and (max-width: 480px) {
+  .login .right .internal {
+    padding: 15px;
+    width: auto;
+  }
+}
+.login .right .internal h1 {
+  color: #2364AD;
+  font-size: 30px;
+  font-family: "Inter-Regular", sans-serif;
+}
+@media screen and (max-width: 480px) {
+  .login .right .internal h1 {
+    font-size: 25px;
+    text-align: center;
+  }
+}
+.login .right .internal p {
+  color: #6A6B6C;
+}
+@media screen and (max-width: 480px) {
+  .login .right .internal p {
+    text-align: center;
+  }
+}
+.login .right .internal form .btn {
+  height: 45px;
+  display: grid;
+  align-items: center;
+}
+.login .right .internal form .captcha {
+  display: flex;
+  margin: 25px 0px;
+}
+@media screen and (max-width: 480px) {
+  .login .right .internal form .captcha {
+    margin: 20px 0px;
+  }
+}
+.login .right .internal form .captcha #status .fa-check {
+  color: green;
+}
+.login .right .internal form .captcha #status .fa-remove {
+  color: red;
+}
+.login .right .internal form .captcha .refresh i {
+  font-size: 20px;
+  padding: 10px;
+}
+.login .right .internal form #generated-captcha {
+  text-decoration: line-through;
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+  background-color: #D2D2D2;
+  border-radius: 6px;
+  border: none;
+  padding: 6px;
+  outline: none;
+  color: #1d1d1d;
+  width: 150px;
+}
+.login .right .internal form label {
+  font-weight: 700;
+  font-size: 15px;
+  color: #6A6B6C;
+}
+.login .right .internal form label i {
+  margin-right: 10px;
+}
+.login .right .internal form input {
+  background: #FFFFFF;
+  box-shadow: 1px 1px 6px rgba(149, 143, 143, 0.36);
+  border-radius: 6px;
+  font-size: 14px;
+  height: 45px;
+  color: #6A6B6C;
+  border: none;
+}
+.login .right .internal form input[type=submit] {
+  background: #2056a1;
+  border: #2056a1;
+  color: #fff;
+}
+.login .right .internal form .help {
+  text-align: center;
+  margin-top: 10px;
+}
+.login .right .internal form .help a {
+  color: #2364AD;
+  text-decoration: none;
+  font-weight: 700;
+}
+.login .right .internal form .message {
+  text-align: center;
+  margin-top: 10px;
+}
+.login .right .internal form .message .success p {
+  color: #2364AD;
+  text-decoration: none;
+  font-weight: 700;
+}
+.login .right .internal form .message .error p {
+  color: red;
+  text-decoration: none;
+  font-weight: 700;
+}
+.login .right .internal form .extra_text {
+  text-align: center;
+  margin-top: 10px;
+}
+.login .right .internal form .extra_text p a {
+  text-decoration: none;
+  font-weight: 600;
+}
+.login .right .konark-wheel1 {
+  background-image: url(../images/konark-wheel.png);
+  position: absolute;
+  top: -55px;
+  left: -55px;
+  width: 200px;
+  opacity: 0.2;
+  height: 200px;
+  background-position: center;
+  background-size: cover;
+  animation: spin 15s infinite linear;
+}
+.login .right .konark-wheel2 {
+  background-image: url(../images/konark-wheel.png);
+  position: absolute;
+  bottom: -200px;
+  right: -200px;
+  width: 600px;
+  opacity: 0.1;
+  height: 600px;
+  background-position: center;
+  background-size: cover;
+  animation: spin 50s infinite linear;
+}
+@media screen and (max-width: 480px) {
+  .login .right .konark-wheel2 {
+    bottom: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+  }
+}
+@keyframes spin {
+  0% {
+    -moz-transform: rotate(320deg);
+    -webkit-transform: rotate(320deg);
+    -o-transform: rotate(320deg);
+    -ms-transform: rotate(320deg);
+  }
+  100% {
+    -moz-transform: rotate(680deg);
+    -webkit-transform: rotate(680deg);
+    -o-transform: rotate(680deg);
+    -ms-transform: rotate(680deg);
+  }
+}/*# sourceMappingURL=login.css.map */

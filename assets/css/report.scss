@@ -1,0 +1,279 @@
+.filter-box {
+    background: linear-gradient(92deg, #CADCEF 1.66%, #B2D2D4 98.53%);
+    padding: 5px 0 0px 0;
+    position: relative;
+
+    .filter-title {
+        border-bottom: 1px solid #fff;
+        padding: 0 15px;
+
+        h1 {
+            color: #313283;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0px;
+            padding-bottom: 5px;
+        }
+    }
+
+    .filter-form {
+        padding: 10px 15px;
+
+        .form-floating {
+            label {
+                font-size: 11px;
+                font-weight: 600;
+                color: #313283;
+            }
+
+            .form-select,
+            .form-control {
+                padding-top: 24px;
+                padding-bottom: 6px;
+                padding-left: .75rem;
+                border: 1px solid #6b9ed7;
+                border-radius: 5px;
+                font-size: 12px;
+                color: #000000;
+                height: 50px;
+                min-height: 26px;
+            }
+        }
+    }
+}
+
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #195599;
+    --bs-btn-border-color: #195599;
+}
+
+// -------- COLORS -------- //
+$raised-color: #066EAE; // Blue border/header
+$solved-color: #0BB86D; // Green border/header
+$pending-color: #CE911F; // Orange border/header
+$escalated-color: #F05B5E; // Red border/header
+
+$card-radius: 10px;
+$card-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
+
+// -------- BASE CARD STYLE -------- //
+.issue-card {
+    border-radius: $card-radius;
+    box-shadow: $card-shadow;
+    border: 1px solid transparent;
+    overflow: hidden;
+
+    .card-header {
+        color: #fff;
+        font-weight: 600;
+        padding: 12px 18px;
+        font-size: 18px;
+        border-bottom: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 6px;
+        border-radius: 6px !important;
+
+        span {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .value {
+            font-size: 24px;
+            font-weight: 700;
+        }
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+}
+
+// -------- INDIVIDUAL CARD THEMES -------- //
+.issue-raised {
+    border-color: $raised-color;
+
+    .card-header {
+        background: $raised-color;
+    }
+}
+
+.issue-solved {
+    border-color: $solved-color;
+
+    .card-header {
+        background: $solved-color;
+    }
+}
+
+.issue-pending {
+    border-color: $pending-color;
+
+    .card-header {
+        background: $pending-color;
+    }
+}
+
+.issue-escalated {
+    border-color: $escalated-color;
+
+    .card-header {
+        background: $escalated-color;
+    }
+}
+
+// -------- PIE CHART CANVAS -------- //
+.chart-wrapper {
+    width: 100%;
+    height: 350px;
+    /* Responsive height */
+    position: relative;
+}
+
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+    /* Important for responsive chart height */
+}
+
+.status-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.12);
+}
+
+.status-title {
+    color: #233D95;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+
+/* Toggle Button Styling */
+.filter-toggle-btn {
+    background: #ff8c00;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s ease;
+    position: absolute;
+    bottom: -15px;
+    right: 15px;
+    box-shadow: 1px 1px 6px 3px #a8a6a6dd;
+}
+
+/* Rotate icon when collapsed */
+.filter-toggle-btn.collapsed i {
+    transform: rotate(180deg);
+}
+
+/* Collapse Animation */
+#filterForm {
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+/* Initially open */
+#filterForm.expanded {
+    max-height: 800px;
+    /* enough space for all fields */
+}
+
+/* Collapsed state */
+#filterForm.collapsed {
+    max-height: 0;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+
+
+.complaints-section {
+    padding: 0px;
+
+    .card {
+        background: #fff;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+        border: 1px solid #e5e5e5;
+
+        .title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #262262;
+            border-bottom: 2px solid #e9e9e9;
+            border-left: none;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+
+            .dot {
+                width: 14px;
+                height: 14px;
+                border-radius: 4px;
+                display: inline-block;
+                margin-right: 6px;
+            }
+
+            .blue {
+                background: #0A74BB;
+            }
+
+            .green {
+                background: #17A878;
+            }
+
+            .purple {
+                background: #8B63D2;
+            }
+
+            .yellow {
+                background: #D8A028;
+            }
+
+            .red {
+                background: #E05454;
+            }
+        }
+
+        .chart-wrapper {
+            width: 100%;
+            height: 330px; // you can change this
+
+            @media (max-width: 768px) {
+                height: 260px; // mobile height
+            }
+
+            @media (max-width: 480px) {
+                height: 220px; // small phones
+            }
+
+            canvas {
+                width: 100% !important;
+                height: 100% !important;
+            }
+        }
+    }
+}

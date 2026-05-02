@@ -1,0 +1,35 @@
+.certificate{
+    width: 100vw;
+    height: 100vh;
+    // display: grid;
+    // grid-template-rows:20% 80%;
+    overflow: scroll;
+    // .left{
+    //     background-color: #154383;
+    //     height: 100%;
+    //     position: relative;
+    // }
+    .right{
+        background-color: aquamarine;
+        height: 100%;
+        position: relative;
+        .certificate-image{
+            img{
+                width: 100%;
+            }
+        }
+        .text{
+            span{
+                position:absolute;
+                padding:0 0;
+                transition:top .5s, left .5s;
+                font-family:Verdana;
+                font-size:18px;
+                color: #fff;
+                top:0px;
+                left:0px;
+                z-index: 1;
+            }
+        }
+    }
+}

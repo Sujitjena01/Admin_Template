@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>TATA Power :: Template</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/images/tata-fav-icon.png"  type="image/icon type">
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/buttons.css" rel="stylesheet">
+  <link href="assets/css/fontawesome.css" rel="stylesheet">
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/pages/header.js"></script>
+  <script src="assets/js/pages/sidebar.js"></script>
+</head>
+<body>
+<section class="main-body">
+  <main-header></main-header>
+  <div class="middle-body">
+    <!-- <section class="body-breadcrumb">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <h4>Hello! <span>Sujit Kumar Jena</span>
+            <ul>
+              <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+              <li><a href="#"><i class="fa fa-files-o" aria-hidden="true"></i> File Management</a></li>
+            </ul>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </section> -->
+    <main-sidebar></main-sidebar>
+    
+    <section class="box-div">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="welcome">
+              <div class="left">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <p>Hello! Sujit Kumar Jena</p>
+              </div>
+              <div class="right">
+                <p><strong>BAICMS / </strong><span>Data Visualization</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="title mt-3">
+            <h5><strong>Data Visualization</strong></h5>
+        </div>
+            
+            
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="card shadow">
+                  <h4 class="card-header">Revenue <span class="tag tag-success" id="revenue-tag">15,341,110</span></h4>
+                  <div class="card-block">
+                    <div id="revenue-column-chart"></div>
+                  </div>
+                </div>
+              </div>
+            </div> <!-- row -->
+      
+            <div class="row mt-3">
+              <div class="col-lg-6">
+                <div class="card shadow">
+                  <h4 class="card-header">Product Wise Revenue</h4>
+                  <div class="card-block">
+                    <div id="products-revenue-pie-chart"></div>
+                  </div>
+                </div>
+              </div>
+      
+              <div class="col-lg-6">
+                <div class="card shadow">
+                  <h4 class="card-header">Electricity Bills</h4>
+                  <div class="card-block">
+                    <div id="orders-spline-chart"></div>
+                  </div>
+                </div>
+              </div>
+            </div> <!-- row -->
+          
+      </div>
+      <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <p>&copy; 2022 - Developed by Odisha Discom IT Team || All Rights Reserved.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </section>
+  </div>
+  
+</section>
+</body>
+
+<script src="https://use.fontawesome.com/0c456c5120.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+ <script src="assets/js/main.js"></script>
+ <script src="assets/js/canvasjs/canvasjs.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(function () {
+      var totalRevenue = 15341110;
+      
+      // CanvasJS column chart to show revenue from Jan 2022 - Dec 2022
+      var revenueColumnChart = new CanvasJS.Chart("revenue-column-chart", {
+        animationEnabled: true,
+        backgroundColor: "transparent",
+        theme: "theme2",
+        axisX: {
+          title: "Months",
+          labelFontSize: 14,
+          valueFormatString: "MMM YYYY"
+        },
+        axisY: {
+          title: "Number of Sales",
+          labelFontSize: 14,
+          prefix: "₹"
+        },
+        toolTip: {
+          borderThickness: 0,
+          cornerRadius: 0
+        },
+        data: [
+          {
+            type: "column",
+            yValueFormatString: "₹###,###.##",
+            dataPoints: [
+              { x: new Date("1 Jan 2022"), y: 868800 },
+              { x: new Date("1 Feb 2022"), y: 1071550 },
+              { x: new Date("1 Mar 2022"), y: 1286200 },
+              { x: new Date("1 Apr 2022"), y: 1106900 },
+              { x: new Date("1 May 2022"), y: 1033800 },
+              { x: new Date("1 Jun 2022"), y: 1017160 },
+              { x: new Date("1 Jul 2022"), y: 1458000 },
+              { x: new Date("1 Aug 2022"), y: 1165850 },
+              { x: new Date("1 Sep 2022"), y: 1594150 },
+              { x: new Date("1 Oct 2022"), y: 1501700 },
+              { x: new Date("1 Nov 2022"), y: 1588400 },
+              { x: new Date("1 Dec 2022"), y: 1648600 }
+            ]
+          }
+        ]
+      });
+      
+      revenueColumnChart.render();
+      
+      //CanvasJS pie chart to show product wise annual revenue for 2022
+      var productsRevenuePieChart = new CanvasJS.Chart("products-revenue-pie-chart", {
+        animationEnabled: true,
+        theme: "theme2",
+        legend: {
+          fontSize: 14
+        },
+        toolTip: {
+          borderThickness: 0,
+          content: "<span style='\"'color: {color};'\"'>{name}</span>: ${y} (#percent%)",
+          cornerRadius: 0
+        },
+        data: [
+          {       
+            indexLabelFontColor: "#676464",
+            indexLabelFontSize: 14,
+            legendMarkerType: "square",
+            legendText: "{indexLabel}",
+            showInLegend: true,
+            startAngle:  90,
+            type: "pie",
+            dataPoints: [
+              {  y: 6289855, name:"Product A", indexLabel: "Product A - 41%", legendText: "Product A", exploded: true },
+              {  y: 2761400, name:"Product B", indexLabel: "Product B - 18%", legendText: "Product B" },
+              {  y: 3681866, name:"Product C", indexLabel: "Product C - 24%", legendText: "Product C", color: "#8064a1" },
+              {  y: 2607989, name:"Product D", indexLabel: "Product D - 17%", legendText: "Product D" }
+            ]
+          }
+        ]
+      });
+      
+      productsRevenuePieChart.render();
+      
+      //CanvasJS spline chart to show orders from Jan 2022 to Dec 2022
+      var ordersSplineChart = new CanvasJS.Chart("orders-spline-chart", {
+        animationEnabled: true,
+        backgroundColor: "transparent",
+        theme: "theme2",
+        toolTip: {
+          borderThickness: 0,
+          cornerRadius: 0
+        },
+        axisX: {
+          labelFontSize: 14,
+          maximum: new Date("31 Dec 2022"),
+          valueFormatString: "MMM YYYY"
+        },
+        axisY: {
+          title: "Bills",
+          gridThickness: 0,
+          labelFontSize: 14,
+          lineThickness: 2
+        },
+        data: [
+          {
+            type: "spline",
+            dataPoints: [
+              { x: new Date("1 Jan 2022"), y: 17376 },
+              { x: new Date("1 Feb 2022"), y: 21431 },
+              { x: new Date("1 Mar 2022"), y: 25724 },
+              { x: new Date("1 Apr 2022"), y: 22138 },
+              { x: new Date("1 May 2022"), y: 20676 },
+              { x: new Date("1 Jun 2022"), y: 25429 },
+              { x: new Date("1 Jul 2022"), y: 29160 },
+              { x: new Date("1 Aug 2022"), y: 23317 },
+              { x: new Date("1 Sep 2022"), y: 31883 },
+              { x: new Date("1 Oct 2022"), y: 30034 },
+              { x: new Date("1 Nov 2022"), y: 31768 },
+              { x: new Date("1 Dec 2022"), y: 41215 }
+            ]
+          }
+        ]
+      });
+
+      ordersSplineChart.render();
+      
+    });
+  </script>
+</html>
