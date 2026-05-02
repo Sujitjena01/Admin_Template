@@ -375,6 +375,7 @@ table thead tr th {
   font-size: 12px;
   padding: 5px 5px 5px 5px;
   transition: 0.3s;
+  padding-left: 20px;
 }
 .main-body .middle-body .sidebar .nav ul li ul li a:hover {
   background: #0f4085;
