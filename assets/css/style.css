@@ -747,9 +747,11 @@ table thead tr th {
   top: 0px;
   bottom: 0px;
 }
-.new-filter-table .pagination-detail {
-  position: absolute;
-  top: 10px;
+.new-filter-table .pagination-container {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: end; */
+  margin-top: 15px;
 }
 
 .buttons {
